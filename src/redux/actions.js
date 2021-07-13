@@ -44,21 +44,19 @@ export function deleteCard(id) {
     }
 }
 
-export function updateCard(name, description, status, priority) {
-    const newNameArr = name.map(el => el.name)
-    const newName = newNameArr[newNameArr.indexOf(name)]
-    const newDescriptionArr = description.map(el => el.description)
-    const newDescription = newDescriptionArr[newDescriptionArr.indexOf(description)]
-    const newStatusArr = status.map(el => el.status)
-    const newStatus = newStatusArr[newStatusArr.indexOf(status)]
-    const newPriorityArr = priority.map(el => el.priority)
-    const newPriority = newPriorityArr[newStatusArr.indexOf(priority)]
+export function updateCard(id, newCard) {
+    // const newCards = {
+    //     name: name,
+    //     description: description,
+    //     status: status,
+    //     priority: priority
+    // }
     return (dispatch) => {
-        axios.patch(`https://nazarov-kanban-server.herokuapp.com/card`,
-            {name: newName, description: newDescription, priority: newPriority, status: newStatus})
+        axios
+            .patch(`https://nazarov-kanban-server.herokuapp.com/card/${id}`, {...newCard})
             .then(res =>
             dispatch(
-               getCards()
+               getCards(newCard)
             )).catch((error) => console.log(error))
     }
 }
