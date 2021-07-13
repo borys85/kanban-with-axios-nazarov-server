@@ -4,7 +4,8 @@ import 'redux-devtools-extension';
 const initialState = {
     statuses: [],
     cards: [],
-    priorities: [1, 2, 3, 4, 5]
+    priorities: [1, 2, 3, 4, 5],
+    name: []
 }
 
 const reducer = (state = initialState, action) => {

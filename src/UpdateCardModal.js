@@ -2,9 +2,6 @@ import React, {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import {
     Button,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupText,
     Modal,
     ModalBody,
     ModalFooter,
@@ -16,6 +13,7 @@ import {updateCard} from "./redux/actions";
 
 const UpdateCardModal = (props) => {
 
+    const {id} = props;
 
     const [modal, setModal] = useState(false);
 
@@ -27,7 +25,13 @@ const UpdateCardModal = (props) => {
     const [priority, setPriority] = useState(props.priority);
 
     const updateButtonHandler = () => {
-        props.updateCard(props.name, props.description, props.status, props.priority);
+        const newCard = {
+            name: name,
+            description: description,
+            status: status,
+            priority: priority
+        }
+        props.updateCard(id, newCard);
         toggle();
     }
 
@@ -80,7 +84,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 
-    updateCard: (name, description, status, priority) => dispatch(updateCard(name, description, status, priority))
+    updateCard: (id, newCard) => dispatch(updateCard(id, newCard)),
 
 })
 
