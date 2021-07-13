@@ -45,12 +45,6 @@ export function deleteCard(id) {
 }
 
 export function updateCard(id, newCard) {
-    // const newCards = {
-    //     name: name,
-    //     description: description,
-    //     status: status,
-    //     priority: priority
-    // }
     return (dispatch) => {
         axios
             .patch(`https://nazarov-kanban-server.herokuapp.com/card/${id}`, {...newCard})
